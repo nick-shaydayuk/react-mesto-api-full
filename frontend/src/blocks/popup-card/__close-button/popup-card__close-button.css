@@ -1,0 +1,11 @@
+.popup-card__close-button {
+  top: -26px;
+  right: -26px;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup-card__close-button {
+    top: -36px;
+    right: -36px;
+  }
+}

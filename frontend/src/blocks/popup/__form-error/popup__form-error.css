@@ -1,0 +1,6 @@
+.popup__form-error {
+    visibility: hidden;
+    display: block;
+    color: red;
+    min-height: 2em;
+}

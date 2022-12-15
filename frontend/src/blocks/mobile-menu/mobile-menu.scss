@@ -1,0 +1,20 @@
+.mobile-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 320px;
+  width: 100%;
+  &__links-container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+    gap: 12px;
+    align-items: center;
+  }
+  &__email {
+    margin: 0;
+  }
+  @media (min-width: 1280px) {
+    display: none;
+  }
+}

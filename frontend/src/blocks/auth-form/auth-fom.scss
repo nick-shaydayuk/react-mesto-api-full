@@ -1,0 +1,62 @@
+.form-auth {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+
+  @media (min-width: 1280px) {
+    width: 100%;
+    max-width: 358px;
+  }
+
+  &__title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    @media (min-width: 1280px) {
+      font-size: 24px;
+      line-height: 29px;
+    }
+  }
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 0 170px;
+  }
+  &__input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    color: #ffffff;
+  }
+  &__button {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 2px;
+    height: 46px;
+    border: none;
+    @media (min-width: 1280px) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+  &__link {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding-top: 20px;
+  }
+}
