@@ -7,6 +7,12 @@ const { login } = require('../controllers/login');
 const { createUser } = require('../controllers/users');
 const { URL_REGEX } = require('../utils/constants');
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 router.post(
   '/signup',
   celebrate({

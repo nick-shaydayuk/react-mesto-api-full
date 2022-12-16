@@ -1,6 +1,6 @@
 import { AppUserContextInterface } from "../contexts/CurrentUserContext";
 
-export const BASE_URL = "http://getout.nomoredomains.club/api";
+export const BASE_URL = "https://api.getout.nomoredomains.nomoredomains.club";
 
 export function checkResponse(res: Response) {
   return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`);
