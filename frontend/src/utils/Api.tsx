@@ -95,9 +95,9 @@ class Api {
 }
 
 export const api = new Api({
-  url: "https://nomoreparties.co/v1/cohort-49/",
+  url: "http://getout.nomoredomains.club",
   headers: {
-    authorization: "98c074a7-bba0-4568-b638-f65388faf7b9",
+    authorization: `Bearer ${localStorage.getItem('token')}`,
     "Content-Type": "application/json",
   },
 });
