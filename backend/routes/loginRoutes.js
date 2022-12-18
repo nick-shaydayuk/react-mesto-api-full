@@ -6,6 +6,7 @@ const auth = require('../middlewares/auth');
 const { login } = require('../controllers/login');
 const { createUser } = require('../controllers/users');
 const { URL_REGEX } = require('../utils/constants');
+const NotFoundError = require('../errors/notFoundError');
 
 router.get('/crash-test', () => {
   setTimeout(() => {
@@ -42,7 +43,7 @@ router.use('/users', userRouter);
 router.use('/cards', cardRouter);
 
 router.use('/', (req, res, next) => {
-  next(res.status(404).send({ message: 'Страница не найдена' }));
+  next(new NotFoundError('Страница не найдена'));
 });
 
 module.exports = router;
