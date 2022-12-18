@@ -3,10 +3,11 @@ const jwt = require('jsonwebtoken');
 const AuthorizationError = require('../errors/authorizationError');
 
 module.exports = (req, res, next) => {
+  console.log(req.cookie);
   const { authorization } = req.headers;
 
-  if (!authorization || !authorization.startsWith('Bearer ')) {
-    next(new AuthorizationError('Необходима авторизация'));
+  if (!authorization) {
+    next(new AuthorizationError('Необходима авторизация, что-то не так'));
   } else {
     const token = authorization.replace('Bearer ', '');
 
@@ -18,7 +19,7 @@ module.exports = (req, res, next) => {
         NODE_ENV === 'production' ? SECRET_KEY : 'dev-key'
       );
     } catch (err) {
-      next(new AuthorizationError('Необходима авторизация'));
+      next(new AuthorizationError('Необходима авторизация, ошибка 401'));
       return;
     }
     req.user = payload;
