@@ -39,13 +39,13 @@ export const login = async ({
   return checkResponse(response);
 };
 
-export const getContent = async (token: string) => {
+export const getContent = async () => {
   const response = await fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   });
   return checkResponse(response);

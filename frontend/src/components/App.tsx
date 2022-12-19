@@ -174,9 +174,9 @@ function App() {
     navigate("/sign-in");
   }
 
-  async function auth(jwt: string) {
+  async function auth() {
     try {
-      const res = await authApi.getContent(jwt);
+      const res = await authApi.getContent();
       if (res) {
         setEmail(res.data.email);
         setIsLoggedIn(true);
@@ -190,7 +190,7 @@ function App() {
   React.useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      auth(jwt);
+      auth();
     }
   }, []);
 
