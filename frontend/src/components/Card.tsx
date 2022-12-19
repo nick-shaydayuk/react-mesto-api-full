@@ -9,7 +9,7 @@ export interface Card {
 }
 
 export type CardType = {
-  owner: CardOwner;
+  owner: CardOwner | string;
   likes: any[];
   link: string;
   name: string;
@@ -17,9 +17,9 @@ export type CardType = {
 }
 
 function Card(props: Card) {
-  const user = React.useContext(CurrentUserContext);
+  const user = React.useContext(CurrentUserContext);  
 
-  const isOwn = props.card.owner._id === user._id;
+  const isOwn = props.card.owner === user._id;
 
   const isLiked = props.card.likes.some((i) => i._id === user._id);
 

@@ -39,7 +39,7 @@ module.exports.getCurrentUser = (req, res, next) => {
       throw new NotFoundError(`Пользователь c id: ${_id} не найден`);
     })
     .then((user) => {
-      res.send({ data: user });
+      res.send(user);
     })
     .catch(next);
 };
@@ -62,7 +62,7 @@ module.exports.createUser = (req, res, next) => {
     })
     .then((user) => {
       const { password: removed, ...rest } = user.toObject();
-      return res.status(created).send({ data: rest });
+      return res.status(created).send({ rest });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -99,7 +99,7 @@ module.exports.updateUserInfo = (req, res, next) => {
       if (!user) {
         throw new NotFoundError(`Пользователь с id: ${req.user._id} не найден`);
       } else {
-        res.send({ data: user });
+        res.send({ user });
       }
     })
     .catch((err) => {
@@ -129,7 +129,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
       if (!user) {
         throw new NotFoundError(`Пользователь с id: ${req.user._id} не найден`);
       }
-      return res.send({ data: user });
+      return res.send({ user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {

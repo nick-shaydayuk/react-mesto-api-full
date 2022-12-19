@@ -178,7 +178,7 @@ function App() {
     try {
       const res = await authApi.getContent();
       if (res) {
-        setEmail(res.data.email);
+        setEmail(res.email);
         setIsLoggedIn(true);
         setCurrentUser(res);
       }

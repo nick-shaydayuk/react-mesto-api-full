@@ -97,7 +97,7 @@ class Api {
 export const api = new Api({
   url: "https://api.getout.nomoredomains.nomoredomains.club/",
   headers: {
-    authorization: `Bearer ${localStorage.getItem('token')}`,
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });
