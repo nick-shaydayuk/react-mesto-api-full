@@ -5,7 +5,7 @@ const NotFoundError = require('../errors/notFoundError');
 const BadRequestError = require('../errors/badRequest');
 const ExistError = require('../errors/existError');
 
-const created = 201;
+CREATED_CODE = 201;
 
 module.exports.getAllUsers = (req, res, next) => {
   User.find({})
@@ -45,40 +45,37 @@ module.exports.getCurrentUser = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-  const {
-    name, about, avatar, email, password
-  } = req.body;
-
   bcrypt
-    .hash(password, 12)
-    .then((hash) => {
+    .hash(req.body.password, 10)
+    .then((hash) =>
       User.create({
-        name,
-        about,
-        avatar,
-        email,
+        email: req.body.email,
         password: hash,
-      });
-    })
-    .then((user) => {
-      const { password: removed, ...rest } = user.toObject();
-      return res.status(created).send({ rest });
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
+        name: req.body.name,
+        about: req.body.about,
+        avatar: req.body.avatar,
+      })
+    )
+    .then((user) =>
+      res.status(CREATED_CODE).send({
+        email: user.email,
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+      })
+    )
+    .catch((e) => {
+      if (e.code === 11000) {
+        next(new ExistError('Пользователь с таким e-mail уже существует'));
+      } else if (e.name === 'ValidationError') {
         next(
           new BadRequestError(
-            'Переданы некорректные данные в методы создания пользователя'
-          )
-        );
-      } else if (err.code === 11000) {
-        next(
-          new ExistError(
-            'Пользователь с таким электронным адресом уже существует'
+            'Что-то не так с данными, попробуйте ещё раз'
           )
         );
       } else {
-        next(err);
+        next(e);
       }
     });
 };
